@@ -8,7 +8,9 @@ import ProfilePage from "./profile/profile";
 import CompanyCalendar from "./Calendar/CompanyCalendar.js";
 import ManagerDashboard from "./Manager/ManagerDashboard";
 import ManagerCalendar from "./Manager/ManagerCalendar";
-
+import ManagerProfile from "./Manager/ManagerProfile.jsx";
+import IdCreation from "./Manager/IdCreation.jsx";
+import ViewEmployee from "./Manager/ViewEmployee.jsx";
 
 const App = () => {
   return (
@@ -21,7 +23,10 @@ const App = () => {
       <Route path="profile" element={<ProfilePage />} />
        <Route path="calendar" element={<CompanyCalendar />} />
       <Route path="manager-dashboard" element={<ManagerDashboard />} />
-      <Route path="Managercalendar" element={<ManagerCalendar />} />
+      <Route path="manager-calendar" element={<ManagerCalendar />} />
+      <Route path="manager-profile" element={<ManagerProfile />} />
+      <Route path="id-creation" element={<IdCreation />} />
+      <Route path="view-employee" element={<ViewEmployee />} />
     </Routes>
   );
 };

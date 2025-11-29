@@ -115,7 +115,7 @@ const CompanyCalendar: React.FC<CompanyCalendarProps> = ({ onNavigate }) => {
               to="/manager-dashboard"
               className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"
             >
-              <TrendingUp className="w-5 h-5" />
+              <LayoutDashboard className="w-5 h-5" />
               <span>Dashboard</span>
             </Link>
 
@@ -135,11 +135,19 @@ const CompanyCalendar: React.FC<CompanyCalendarProps> = ({ onNavigate }) => {
               {expandedMenu === 'employee' && (
                 <div className="ml-8 mt-1 space-y-1">
                   <button className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50">
-                    All employees
+                    <Link
+                      to="/view-employee"
+                      className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50"
+                    >
+                      <span>All employees</span>
+                    </Link>
                   </button>
-                  <button className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50">
-                    Employee ID Creation
-                  </button>
+                  <Link
+                    to="/id-creation"
+                    className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50"
+                  >
+                    <span>Employee ID Creation</span>
+                  </Link>
                 </div>
               )}
             </div>
@@ -208,19 +216,21 @@ const CompanyCalendar: React.FC<CompanyCalendarProps> = ({ onNavigate }) => {
         </nav>
         {/* User Profile */}
         <div className="p-4 border-t border-gray-200">
-          <div className="flex items-center space-x-3 mb-3">
+          <Link to="/manager-profile" className="flex items-center space-x-3 mb-3 ">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-semibold">
               SJ
             </div>
             <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-900">Sarah Johnson</p>
-              <p className="text-xs text-gray-500">Senior Engineer</p>
+              <p className="text-sm font-semibold text-gray-900">John Manager</p>
+              <p className="text-xs text-gray-500">Manager</p>
             </div>
+          </Link>
+          <div className="flex items-center justify-between">
+            <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 text-sm font-medium">
+              <LogOut className="w-4 h-4" />
+              <span>Sign Out</span>
+            </button>
           </div>
-          <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 text-sm font-medium">
-            <LogOut className="w-4 h-4" />
-            <span>Sign Out</span>
-          </button>
         </div>
       </aside>
 
