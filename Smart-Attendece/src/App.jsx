@@ -6,6 +6,8 @@ import Signup from "./Authentication/Signup.jsx";
 import EmployeeLeave from "./Employee/EmployeeLeave";
 import ProfilePage from "./profile/profile";
 import CompanyCalendar from "./Calendar/CompanyCalendar.js";
+import ManagerDashboard from "./Manager/ManagerDashboard";
+import ManagerCalendar from "./Manager/ManagerCalendar";
 
 
 const App = () => {
@@ -18,6 +20,8 @@ const App = () => {
       <Route path="leave" element={<EmployeeLeave />} />
       <Route path="profile" element={<ProfilePage />} />
        <Route path="calendar" element={<CompanyCalendar />} />
+      <Route path="manager-dashboard" element={<ManagerDashboard />} />
+      <Route path="Managercalendar" element={<ManagerCalendar />} />
     </Routes>
   );
 };
