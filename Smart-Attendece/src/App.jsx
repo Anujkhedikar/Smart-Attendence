@@ -11,6 +11,12 @@ import ManagerCalendar from "./Manager/ManagerCalendar";
 import ManagerProfile from "./Manager/ManagerProfile.jsx";
 import IdCreation from "./Manager/IdCreation.jsx";
 import ViewEmployee from "./Manager/ViewEmployee.jsx";
+import AdminDashboard from "./Admin/AdminDashboard.js";
+import Reportsandanalytics from "./Admin/Reportsandanalytics.js";
+import LeaveRequest from "./Admin/LeaveRequest.js";
+import AllEmployees from "./Admin/AllEmployees.js";
+import AdminProfile from "./Admin/AdminProfile.js";
+
 
 const App = () => {
   return (
@@ -27,6 +33,11 @@ const App = () => {
       <Route path="manager-profile" element={<ManagerProfile />} />
       <Route path="id-creation" element={<IdCreation />} />
       <Route path="view-employee" element={<ViewEmployee />} />
+      <Route path="admin-dashboard" element={<AdminDashboard />} />
+      <Route path="reportsandanalytics" element={<Reportsandanalytics />} />
+      <Route path="leave-request" element={<LeaveRequest/>} />
+      <Route path="all-employees" element={<AllEmployees/>} />
+      <Route path="admin-profile" element={<AdminProfile/>} />
     </Routes>
   );
 };
