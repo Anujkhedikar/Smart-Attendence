@@ -1,7 +1,7 @@
 // src/pages/ResetPassword.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../../supabase/supabase.js";
+import { supabase } from "../../supabase/supabase.tsx";
 
 export default function ResetPassword() {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export default function ResetPassword() {
         }
       } catch (err) {
         console.error("Reset link check failed:", err);
-        setSessionValid(false);
+        setSessionValid(false);2
         setErrorMsg(
           "Unable to verify the reset link. Please request a new password reset email."
         );
@@ -52,7 +52,8 @@ export default function ResetPassword() {
     checkSession();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
     e.preventDefault();
     resetMessages();
 
@@ -85,14 +86,16 @@ export default function ResetPassword() {
       setTimeout(() => {
         navigate("/"); // or "/login" if you have a specific login route
       }, 1500);
-    } catch (err) {
-      console.error("Error updating password:", err);
-      setErrorMsg(
-        err.message || "Something went wrong while updating your password."
-      );
-    } finally {
-      setLoading(false);
-    }
+    } catch (err: unknown) {
+  console.error("Error updating password:", err);
+
+  if (err instanceof Error) {
+    setErrorMsg(err.message);
+  } else {
+    setErrorMsg("Something went wrong while updating your password.");
+  }
+}
+
   };
 
   // While checking/reset link validity
@@ -166,7 +169,8 @@ export default function ResetPassword() {
                 type="password"
                 placeholder="Enter new password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
@@ -179,7 +183,9 @@ export default function ResetPassword() {
                 type="password"
                 placeholder="Re-enter new password"
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>setConfirmPassword(e.target.value)
+}
+
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>

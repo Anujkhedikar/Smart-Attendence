@@ -1,10 +1,9 @@
-// src/pages/Login.jsx
 import React, { useState } from "react";
 import authIllustration from "./img2/img2.png";
 import { supabase } from "../../supabase/supabase.js";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Signup() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -18,7 +17,7 @@ export default function Login() {
     setSuccessMsg("");
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     resetMessages();
 
@@ -30,48 +29,21 @@ export default function Login() {
     try {
       setLoading(true);
 
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/employee-dashboard`,
+        },
       });
 
       if (error) throw error;
 
-      setSuccessMsg("Login successful!");
-      // ✅ Redirect to EmployeeDashboard after successful login
-      navigate("/employee-dashboard");
-    } catch (err) {
-      setErrorMsg(err.message || "Error logging in. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleForgotPassword = async () => {
-    resetMessages();
-
-    if (!email) {
-      setErrorMsg("Please enter your email first.");
-      return;
-    }
-
-    try {
-      setLoading(true);
-
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        // 👇 change this to whatever route you will handle password update on
-        redirectTo: `${window.location.origin}/reset-password`,
-      });
-
-      if (error) throw error;
-
-      setSuccessMsg(
-        "Password reset link sent to your email. Please check your inbox."
-      );
-    } catch (err) {
-      setErrorMsg(
-        err.message || "Error sending reset link. Please try again later."
-      );
+      setSuccessMsg("Signup successful! Please check your email to confirm.");
+      // Optionally redirect after signup confirmation
+      // navigate("/employee-dashboard");
+    } catch (err: any) {
+      setErrorMsg(err.message || "Error signing up. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -87,7 +59,7 @@ export default function Login() {
               Welcome to SmartAttend
             </h1>
             <p className="mt-4 text-sm text-blue-100 max-w-sm">
-              Login to track attendance, apply leave, and access your dashboard.
+              Sign up to track attendance, apply leave, and access your dashboard.
             </p>
           </div>
 
@@ -107,9 +79,9 @@ export default function Login() {
         {/* RIGHT PANEL */}
         <div className="lg:w-1/2 bg-white px-6 sm:px-10 py-8 sm:py-10 flex flex-col justify-center">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold text-slate-900">Login</h2>
+            <h2 className="text-2xl font-semibold text-slate-900">Sign Up</h2>
             <p className="mt-1 text-sm text-slate-500">
-              Enter your credentials to continue.
+              Create your account to continue.
             </p>
           </div>
 
@@ -157,16 +129,6 @@ export default function Login() {
                 required
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
-              <div className="flex justify-end">
-                <button
-                  type="button"
-                  onClick={handleForgotPassword}
-                  className="mt-1 text-xs font-medium text-blue-600 hover:text-blue-500"
-                  disabled={loading}
-                >
-                  Forgot password?
-                </button>
-              </div>
             </div>
 
             <button
@@ -174,7 +136,7 @@ export default function Login() {
               disabled={loading}
               className="mt-4 w-full rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 transition disabled:opacity-60"
             >
-              {loading ? "Processing..." : "Login"}
+              {loading ? "Processing..." : "Sign Up"}
             </button>
           </form>
         </div>

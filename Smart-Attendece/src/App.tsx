@@ -1,21 +1,21 @@
 import { Routes, Route } from "react-router-dom";
-import Landing from "./Landingpage/Landing";
-import EmployeeDashboard from "./Employee/EmployeeDashboard";
-import AttendanceHistory from "./Employee/AttendanceHistory";
-import Signup from "./Authentication/Signup";
-import EmployeeLeave from "./Employee/EmployeeLeave";
-import ProfilePage from "./Employee/profile";
-import CompanyCalendar from "./Calendar/CompanyCalendar";
-import ManagerDashboard from "./Manager/ManagerDashboard";
-import ManagerCalendar from "./Manager/ManagerCalendar";
-import ManagerProfile from "./Manager/ManagerProfile";
-import IdCreation from "./Manager/IdCreation";
-import ViewEmployee from "./Manager/ViewEmployee";
-import AdminDashboard from "./Admin/AdminDashboard";
-import Reportsandanalytics from "./Admin/Reportsandanalytics";
-import LeaveRequest from "./Admin/LeaveRequest";
-import AllEmployees from "./Admin/AllEmployees";
-import AdminProfile from "./Admin/AdminProfile";
+import Landing from "./Landingpage/Landing.tsx";
+import EmployeeDashboard from "./Employee/EmployeeDashboard.js";
+import AttendanceHistory from "./Employee/AttendanceHistory.js";
+import Signup from "./Authentication/Signup.tsx";
+import EmployeeLeave from "./Employee/EmployeeLeave.js";
+import ProfilePage from "./Employee/profile.js";
+import CompanyCalendar from "./Calendar/CompanyCalendar.js";
+import ManagerDashboard from "./Manager/ManagerDashboard.js";
+import ManagerCalendar from "./Manager/ManagerCalendar.js";
+import ManagerProfile from "./Manager/ManagerProfile.js";
+import IdCreation from "./Manager/IdCreation.js";
+import ViewEmployee from "./Manager/ViewEmployee.js";
+import AdminDashboard from "./Admin/AdminDashboard.js";
+import Reportsandanalytics from "./Admin/Reportsandanalytics.js";
+import LeaveRequest from "./Admin/LeaveRequest.js";
+import AllEmployees from "./Admin/AllEmployees.js";
+import AdminProfile from "./Admin/AdminProfile.js";
 
 const App = () => {
   return (
