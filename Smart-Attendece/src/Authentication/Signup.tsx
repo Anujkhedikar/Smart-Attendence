@@ -1,9 +1,11 @@
-// src/pages/Login.jsx
 import React, { useState } from "react";
 import authIllustration from "./img2/img2.png";
 import { supabase } from "../../supabase/supabase.js";
+import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Signup() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -15,7 +17,7 @@ export default function Login() {
     setSuccessMsg("");
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     resetMessages();
 
@@ -27,17 +29,21 @@ export default function Login() {
     try {
       setLoading(true);
 
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/employee-dashboard`,
+        },
       });
 
       if (error) throw error;
 
-      setSuccessMsg("Login successful!");
-      // navigate("/dashboard") if needed later
-    } catch (err) {
-      setErrorMsg(err.message || "Error logging in. Please try again.");
+      setSuccessMsg("Signup successful! Please check your email to confirm.");
+      // Optionally redirect after signup confirmation
+      // navigate("/employee-dashboard");
+    } catch (err: any) {
+      setErrorMsg(err.message || "Error signing up. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -46,7 +52,6 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-5xl rounded-[26px] bg-white shadow-[0_0_0_1px_rgba(59,130,246,0.25),0_24px_80px_rgba(15,23,42,0.25)] overflow-hidden flex flex-col lg:flex-row">
-        
         {/* LEFT PANEL */}
         <div className="lg:w-1/2 bg-blue-600 text-white p-8 sm:p-10 flex flex-col justify-between gap-8">
           <div>
@@ -54,7 +59,7 @@ export default function Login() {
               Welcome to SmartAttend
             </h1>
             <p className="mt-4 text-sm text-blue-100 max-w-sm">
-              Login to track attendance, apply leave, and access your dashboard.
+              Sign up to track attendance, apply leave, and access your dashboard.
             </p>
           </div>
 
@@ -73,11 +78,10 @@ export default function Login() {
 
         {/* RIGHT PANEL */}
         <div className="lg:w-1/2 bg-white px-6 sm:px-10 py-8 sm:py-10 flex flex-col justify-center">
-
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold text-slate-900">Login</h2>
+            <h2 className="text-2xl font-semibold text-slate-900">Sign Up</h2>
             <p className="mt-1 text-sm text-slate-500">
-              Enter your credentials to continue.
+              Create your account to continue.
             </p>
           </div>
 
@@ -132,7 +136,7 @@ export default function Login() {
               disabled={loading}
               className="mt-4 w-full rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 transition disabled:opacity-60"
             >
-              {loading ? "Logging in..." : "Login"}
+              {loading ? "Processing..." : "Sign Up"}
             </button>
           </form>
         </div>
