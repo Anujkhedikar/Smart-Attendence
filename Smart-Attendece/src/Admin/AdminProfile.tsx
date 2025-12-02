@@ -70,9 +70,13 @@ const AdminProfile: React.FC = () => {
         {/* Main Menu */}
         <nav className="flex-1 p-4 overflow-y-auto">
           <div className="space-y-1">
-            <Link to="/admin-dashboard" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group">
-              <LayoutDashboard className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
-              <span>Dashboard Overview</span>
+             <Link to="/admin-dashboard" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group">
+             <LayoutDashboard className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
+              <span>Dashboard</span>
+             </Link>
+                     
+            <Link to="/admin-dashboard" >
+              
             </Link>
 
             {/* Employee Management Dropdown */}
@@ -89,7 +93,7 @@ const AdminProfile: React.FC = () => {
               </button>
               {isEmpMenuOpen && (
                 <div className="pl-11 space-y-1">
-                  <a href="#" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">All Employees</a>
+                  <Link to="/all-employees" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">All Employees</Link>
                 </div>
               )}
             </div>
@@ -108,16 +112,16 @@ const AdminProfile: React.FC = () => {
               </button>
               {isAttendanceMenuOpen && (
                 <div className="pl-11 space-y-1">
-                   <a href="#" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Approve Entries</a>
-                   <a href="#" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Leave Requests</a>
+                   <Link to="/leave-request" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Approve Entries</Link>
+                   <Link to="/leave-request" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Leave Requests</Link>
                 </div>
               )}
             </div>
 
-            <a href="#" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
+            <Link to="/reportsandanalytics" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
               <BarChart2 className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
               <span>Reports & Analytics</span>
-            </a>
+            </Link>
 
             <a href="#" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
               <Settings className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />

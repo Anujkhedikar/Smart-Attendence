@@ -153,7 +153,12 @@ const AdminDashboard: React.FC = () => {
               </button>
               {isEmpMenuOpen && (
                 <div className="pl-11 space-y-1">
-                  <a href="#" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">All Employees</a>
+                  <Link 
+                  to="/all-employees"
+                  className="block text-sm text-gray-500 hover:text-gray-700 py-1.5"
+                  >
+                  All Employees
+                  </Link>
                 </div>
               )}
             </div>
@@ -173,16 +178,21 @@ const AdminDashboard: React.FC = () => {
               {isAttendanceMenuOpen && (
                 <div className="pl-11 space-y-1">
                    <a href="#" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Approve Entries</a>
-                   <a href="#" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Leave Requests</a>
+                   <Link
+                   to="/leave-request"
+                   className="block text-sm text-gray-500 hover:text-gray-700 py-1.5"
+                   >
+                   Leave Requests
+                   </Link>
                 </div>
               )}
             </div>
 
-            <a href="#" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
+            <Link to="/reportsandanalytics"
+            className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
               <BarChart2 className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
               <span>Reports & Analytics</span>
-            </a>
-
+            </Link>
             <a href="#" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
               <Settings className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
               <span>System Settings</span>
@@ -192,6 +202,7 @@ const AdminDashboard: React.FC = () => {
 
         {/* User Profile */}
         <div className="p-4 border-t border-gray-200">
+          <Link to="/admin-profile">
           <div className="flex items-center space-x-3 mb-3">
             <img
               src="https://i.pravatar.cc/150?u=admin_john" // Placeholder image
@@ -203,6 +214,7 @@ const AdminDashboard: React.FC = () => {
               <p className="text-xs text-gray-500">Administrator</p>
             </div>
           </div>
+          </Link>
           <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 text-sm font-medium w-full px-2 py-1 rounded hover:bg-gray-100 transition-colors">
             <LogOut className="w-4 h-4" />
             <span>Logout</span>

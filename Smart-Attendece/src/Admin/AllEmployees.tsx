@@ -105,7 +105,7 @@ const employees = [
     statusBg: 'bg-green-100',
     statusText: 'text-green-800'
   },
-    {
+  {
     id: 7,
     name: 'James Bond',
     empId: 'EMP007',
@@ -178,25 +178,29 @@ const AllEmployees: React.FC = () => {
                 onClick={() => setIsAttendanceMenuOpen(!isAttendanceMenuOpen)}
                 className="w-full flex items-center justify-between space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group"
               >
-                 <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3">
                   <ClipboardCheck className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
                   <span>Attendance & Leave</span>
                 </div>
-                 <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isAttendanceMenuOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isAttendanceMenuOpen ? 'rotate-180' : ''}`} />
               </button>
               {isAttendanceMenuOpen && (
                 <div className="pl-11 space-y-1">
-                   <a href="#" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Approve Entries</a>
-                   <a href="#" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Leave Requests</a>
-                </div>
+                  <a href="#" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Approve Entries</a>
+                  <Link
+                    to="/leave-request"
+                    className="block text-sm text-gray-500 hover:text-gray-700 py-1.5"
+                  >
+                    Leave Requests
+                  </Link>  </div>
               )}
             </div>
 
-            <a href="#" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
+            <Link to="/reportsandanalytics"
+              className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
               <BarChart2 className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
               <span>Reports & Analytics</span>
-            </a>
-
+            </Link>
             <a href="#" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
               <Settings className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
               <span>System Settings</span>
@@ -206,17 +210,19 @@ const AllEmployees: React.FC = () => {
 
         {/* User Profile */}
         <div className="p-4 border-t border-gray-200">
-          <div className="flex items-center space-x-3 mb-3">
-            <img
-              src="https://i.pravatar.cc/150?u=admin_john"
-              alt="Admin Avatar"
-              className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-            />
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-900">John Admin</p>
-              <p className="text-xs text-gray-500">Administrator</p>
+          <Link to="/admin-profile">
+            <div className="flex items-center space-x-3 mb-3">
+              <img
+                src="https://i.pravatar.cc/150?u=admin_john"
+                alt="Admin Avatar"
+                className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+              />
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-gray-900">John Admin</p>
+                <p className="text-xs text-gray-500">Administrator</p>
+              </div>
             </div>
-          </div>
+          </Link>
           <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 text-sm font-medium w-full px-2 py-1 rounded hover:bg-gray-100 transition-colors">
             <LogOut className="w-4 h-4" />
             <span>Logout</span>
@@ -245,7 +251,7 @@ const AllEmployees: React.FC = () => {
 
         {/* Page Content Container */}
         <div className="p-8 max-w-7xl mx-auto">
-            
+
           {/* Page Header & Actions */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
             <div>
@@ -262,34 +268,34 @@ const AllEmployees: React.FC = () => {
           <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 mb-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
             {/* Search Input */}
             <div className="relative flex-1 w-full">
-                <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search by name, ID, or role..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
+              <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search by name, ID, or role..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
             </div>
-            
+
             {/* Department Filter */}
             <div className="relative w-full md:w-48">
-                <select className="w-full appearance-none pl-4 pr-10 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <option>All Departments</option>
-                    <option>Engineering</option>
-                    <option>Marketing</option>
-                    <option>Sales</option>
-                </select>
-                <ChevronDown className="absolute right-3 top-2.5 w-5 h-5 text-gray-400 pointer-events-none" />
+              <select className="w-full appearance-none pl-4 pr-10 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option>All Departments</option>
+                <option>Engineering</option>
+                <option>Marketing</option>
+                <option>Sales</option>
+              </select>
+              <ChevronDown className="absolute right-3 top-2.5 w-5 h-5 text-gray-400 pointer-events-none" />
             </div>
 
             {/* Status Filter */}
             <div className="relative w-full md:w-48">
-                <select className="w-full appearance-none pl-4 pr-10 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <option>All Status</option>
-                    <option>Active</option>
-                    <option>Inactive</option>
-                    <option>On Leave</option>
-                </select>
-                <ChevronDown className="absolute right-3 top-2.5 w-5 h-5 text-gray-400 pointer-events-none" />
+              <select className="w-full appearance-none pl-4 pr-10 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option>All Status</option>
+                <option>Active</option>
+                <option>Inactive</option>
+                <option>On Leave</option>
+              </select>
+              <ChevronDown className="absolute right-3 top-2.5 w-5 h-5 text-gray-400 pointer-events-none" />
             </div>
           </div>
 
@@ -337,9 +343,9 @@ const AllEmployees: React.FC = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div className="flex items-center justify-end space-x-3 text-gray-400">
-                            <button className="hover:text-indigo-600 transition-colors"><Eye className="w-5 h-5" /></button>
-                            <button className="hover:text-indigo-600 transition-colors"><Edit className="w-5 h-5" /></button>
-                            <button className="hover:text-red-600 transition-colors"><Trash2 className="w-5 h-5" /></button>
+                          <button className="hover:text-indigo-600 transition-colors"><Eye className="w-5 h-5" /></button>
+                          <button className="hover:text-indigo-600 transition-colors"><Edit className="w-5 h-5" /></button>
+                          <button className="hover:text-red-600 transition-colors"><Trash2 className="w-5 h-5" /></button>
                         </div>
                       </td>
                     </tr>
@@ -347,29 +353,29 @@ const AllEmployees: React.FC = () => {
                 </tbody>
               </table>
             </div>
-            
+
             {/* Pagination Footer */}
             <div className="bg-white px-6 py-4 flex items-center justify-between border-t border-gray-200">
-                <div className="text-sm text-gray-500">
-                    Showing 1 to 7 of 42 results
-                </div>
-                <div className="flex items-center space-x-2">
-                    <button className="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-500 hover:bg-gray-50">
-                        &lt;
-                    </button>
-                    <button className="px-3 py-1 bg-indigo-600 text-white rounded-md text-sm font-medium">
-                        1
-                    </button>
-                    <button className="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                        2
-                    </button>
-                     <button className="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                        3
-                    </button>
-                    <button className="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                        &gt;
-                    </button>
-                </div>
+              <div className="text-sm text-gray-500">
+                Showing 1 to 7 of 42 results
+              </div>
+              <div className="flex items-center space-x-2">
+                <button className="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-500 hover:bg-gray-50">
+                  &lt;
+                </button>
+                <button className="px-3 py-1 bg-indigo-600 text-white rounded-md text-sm font-medium">
+                  1
+                </button>
+                <button className="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  2
+                </button>
+                <button className="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  3
+                </button>
+                <button className="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  &gt;
+                </button>
+              </div>
             </div>
 
           </div>

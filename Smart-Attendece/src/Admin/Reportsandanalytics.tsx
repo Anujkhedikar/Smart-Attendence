@@ -38,11 +38,6 @@ const AdminDashboard: React.FC = () => {
       trendUp: false,
     },
     {
-      title: 'Total Payroll',
-      value: '$142k',
-      subtitle: 'Oct 2023',
-    },
-    {
       title: 'New Hires',
       value: '12',
       trend: '+4 this month',
@@ -62,21 +57,6 @@ const AdminDashboard: React.FC = () => {
     { day: 'Sun', height: 'h-8', color: 'bg-indigo-200' },
   ];
 
-  // Department Cost Distribution Data
-  const departmentCosts = [
-    { name: 'Engineering', headcount: 45, cost: '42%', color: 'bg-blue-500' },
-    { name: 'Sales', headcount: 32, cost: '28%', color: 'bg-green-500' },
-    { name: 'Marketing', headcount: 18, cost: '15%', color: 'bg-purple-500' },
-    { name: 'HR & Admin', headcount: 12, cost: '10%', color: 'bg-orange-500' },
-    { name: 'Support', headcount: 35, cost: '5%', color: 'bg-gray-400' },
-  ];
-
-  // Generated Reports Data
-  const generatedReports = [
-    { name: 'Monthly Payroll - Oct 2023', date: 'Oct 25, 2023', type: 'PDF', icon: FileText, iconColor: 'text-green-600' },
-    { name: 'Q3 Attendance Logs', date: 'Oct 01, 2023', type: 'CSV', icon: BarChart2, iconColor: 'text-blue-600' },
-    { name: 'Employee Satisfaction Survey', date: 'Sep 15, 2023', type: 'PDF', icon: DonutChartIcon, iconColor: 'text-orange-600' },
-  ];
 
   return (
     <div className="flex min-h-screen bg-gray-50 font-sans">
@@ -98,10 +78,10 @@ const AdminDashboard: React.FC = () => {
         {/* Main Menu */}
         <nav className="flex-1 p-4 overflow-y-auto">
           <div className="space-y-1 mb-6">
-            <a href="#" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group">
-              <LayoutDashboard className="w-5 h-5 text-gray-500 group-hover:text-gray-900" />
+            <Link to="/admin-dashboard" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group">
+              <LayoutDashboard className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
               <span>Dashboard Overview</span>
-            </a>
+            </Link>
 
             {/* Employee Management Dropdown style */}
             <div className="space-y-1">
@@ -113,25 +93,32 @@ const AdminDashboard: React.FC = () => {
                 <ChevronDown className="w-4 h-4 text-gray-400" />
               </button>
               {/* Submenu item usually hidden/toggled, showing here for visual match */}
-              <a href="#" className="flex items-center space-x-3 px-3 py-2 ml-4 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium">
-                <span>All Employees</span>
-              </a>
+              <Link
+                to="/all-employees"
+                className="block text-sm text-gray-500 hover:text-gray-700 py-1.5"
+              >
+                All Employees
+              </Link>
             </div>
 
             {/* Attendance & Leave Dropdown style */}
             <div className="space-y-1 mt-2">
               <button className="w-full flex items-center justify-between space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group">
-                 <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3">
                   <ClipboardCheck className="w-5 h-5 text-gray-500 group-hover:text-gray-900" />
                   <span>Attendance & Leave</span>
                 </div>
-                 <ChevronDown className="w-4 h-4 text-gray-400" />
+                <ChevronDown className="w-4 h-4 text-gray-400" />
               </button>
               {/* Submenu items */}
               <div className="ml-4 space-y-1">
-                 <a href="#" className="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium">Approve Entries</a>
-                 <a href="#" className="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium">Leave Requests</a>
-              </div>
+                <a href="#" className="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium">Approve Entries</a>
+                <Link
+                  to="/leave-request"
+                  className="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium"
+                >
+                  Leave Requests
+                </Link>  </div>
             </div>
 
             {/* Active Menu Item */}
@@ -149,19 +136,20 @@ const AdminDashboard: React.FC = () => {
 
         {/* User Profile */}
         <div className="p-4 border-t border-gray-200">
-          <div className="flex items-center space-x-3 mb-3">
-            {/* Using an image for the avatar to match the design */}
-            <img
-              src="https://i.pravatar.cc/150?img=68" // Placeholder image
-              alt="Admin Avatar"
-              className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-            />
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-900">John Admin</p>
-              <p className="text-xs text-gray-500">Administrator</p>
+          <Link to="/admin-profile">
+            <div className="flex items-center space-x-3 mb-3">
+              <img
+                src="https://i.pravatar.cc/150?u=admin_john" // Placeholder image
+                alt="Admin Avatar"
+                className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+              />
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-gray-900">John Admin</p>
+                <p className="text-xs text-gray-500">Administrator</p>
+              </div>
             </div>
-          </div>
-          <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 text-sm font-medium w-full px-2 py-1 rounded hover:bg-gray-100">
+          </Link>
+          <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 text-sm font-medium w-full px-2 py-1 rounded hover:bg-gray-100 transition-colors">
             <LogOut className="w-4 h-4" />
             <span>Logout</span>
           </button>
@@ -193,8 +181,8 @@ const AdminDashboard: React.FC = () => {
           {/* Page Title & Actions */}
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 space-y-4 md:space-y-0">
             <div>
-               <h3 className="text-xl font-bold text-gray-900">Reports & Analytics</h3>
-               <p className="text-gray-500 text-sm">Company-wide insights and data exports.</p>
+              <h3 className="text-xl font-bold text-gray-900">Reports & Analytics</h3>
+              <p className="text-gray-500 text-sm">Company-wide insights and data exports.</p>
             </div>
 
             <div className="flex items-center space-x-3">
@@ -202,11 +190,6 @@ const AdminDashboard: React.FC = () => {
               <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 text-sm font-medium hover:bg-gray-50 flex items-center">
                 <span>{dateRange}</span>
                 <ChevronDown className="w-4 h-4 ml-2" />
-              </button>
-              {/* Export Button */}
-              <button className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center transition-colors shadow-sm">
-                <Download className="w-4 h-4 mr-2" />
-                Export Dashboard
               </button>
             </div>
           </div>
@@ -219,19 +202,19 @@ const AdminDashboard: React.FC = () => {
                   <h4 className="text-sm font-medium text-gray-500">{stat.title}</h4>
                   {stat.trend && !stat.isBadge && (
                     <div className={`flex items-center text-xs font-bold px-2 py-0.5 rounded-full ${stat.trendUp ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                      {stat.trendUp ? <TrendingUp className="w-3 h-3 mr-1"/> : <TrendingDown className="w-3 h-3 mr-1"/>}
+                      {stat.trendUp ? <TrendingUp className="w-3 h-3 mr-1" /> : <TrendingDown className="w-3 h-3 mr-1" />}
                       {stat.trend}
                     </div>
                   )}
-                  {stat.subtitle && <span className="text-xs text-gray-400 font-medium">{stat.subtitle}</span>}
+
                 </div>
                 <div className="flex items-end justify-between">
-                   <span className="text-4xl font-bold text-gray-900 tracking-tight">{stat.value}</span>
-                   {stat.isBadge && (
-                     <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-lg">
-                       {stat.trend}
-                     </span>
-                   )}
+                  <span className="text-4xl font-bold text-gray-900 tracking-tight">{stat.value}</span>
+                  {stat.isBadge && (
+                    <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-lg">
+                      {stat.trend}
+                    </span>
+                  )}
                 </div>
               </div>
             ))}
@@ -247,80 +230,16 @@ const AdminDashboard: React.FC = () => {
                 {attendanceChartData.map((data, index) => (
                   <div key={index} className="flex flex-col items-center group">
                     <div className="relative flex items-end h-full w-6 md:w-10 bg-gray-50 rounded-t-lg overflow-hidden">
-                       <div className={`w-full ${data.height} ${data.color} rounded-t-lg transition-all duration-300 group-hover:opacity-80`}></div>
+                      <div className={`w-full ${data.height} ${data.color} rounded-t-lg transition-all duration-300 group-hover:opacity-80`}></div>
                     </div>
                     <span className="text-xs text-gray-500 mt-3 font-medium">{data.day}</span>
                   </div>
                 ))}
               </div>
               <div className="flex justify-between text-xs text-gray-400 px-4 mt-2">
-                 <span>Mon</span><span>Sun</span>
+                <span>Mon</span><span>Sun</span>
               </div>
             </div>
-
-            {/* Department Cost Distribution Table */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-6">Department Cost Distribution</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[300px]">
-                  <thead>
-                    <tr className="text-xs font-semibold text-gray-500 border-b border-gray-100">
-                      <th className="text-left pb-3 pl-2">Department</th>
-                      <th className="text-right pb-3">Headcount</th>
-                      <th className="text-right pb-3 pr-2">Cost %</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-50">
-                    {departmentCosts.map((dept, index) => (
-                      <tr key={index}>
-                        <td className="py-3 pl-2 text-sm font-medium text-gray-700 flex items-center">
-                           <span className={`w-2 h-2 rounded-full mr-3 ${dept.color}`}></span>
-                           {dept.name}
-                        </td>
-                        <td className="py-3 text-right text-sm text-gray-600">{dept.headcount}</td>
-                        <td className="py-3 pr-2 text-right text-sm font-bold text-gray-900">{dept.cost}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Row: Generated Reports Table */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-             <div className="p-6 pb-4 border-b border-gray-100">
-                 <h3 className="text-lg font-bold text-gray-900">Generated Reports</h3>
-             </div>
-             <div className="overflow-x-auto">
-               <table className="w-full">
-                 <thead className="bg-gray-50">
-                   <tr>
-                     <th className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider py-4 px-6">Report Name</th>
-                     <th className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider py-4 px-6">Date Generated</th>
-                     <th className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider py-4 px-6">Type</th>
-                     <th className="text-right text-xs font-semibold text-gray-500 uppercase tracking-wider py-4 px-6">Action</th>
-                   </tr>
-                 </thead>
-                 <tbody className="divide-y divide-gray-100">
-                   {generatedReports.map((report, index) => (
-                     <tr key={index} className="hover:bg-gray-50 transition-colors">
-                       <td className="py-4 px-6 text-sm font-medium text-gray-900 flex items-center">
-                          <report.icon className={`w-5 h-5 mr-3 ${report.iconColor}`} />
-                          {report.name}
-                       </td>
-                       <td className="py-4 px-6 text-sm text-gray-500">{report.date}</td>
-                       <td className="py-4 px-6 text-sm text-gray-500">
-                          <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded uppercase">{report.type}</span>
-                       </td>
-                       <td className="py-4 px-6 text-right text-sm font-medium">
-                         <button className="text-indigo-600 hover:text-indigo-800 hover:underline">Download</button>
-                       </td>
-                     </tr>
-                   ))}
-                 </tbody>
-               </table>
-             </div>
           </div>
 
         </div>{/* End Dashboard Content Container */}

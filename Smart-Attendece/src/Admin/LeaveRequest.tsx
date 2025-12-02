@@ -84,7 +84,7 @@ const LeaveRequestApprovals: React.FC = () => {
 
         <nav className="flex-1 p-4 overflow-y-auto">
           <div className="space-y-1">
-            <Link to="/dashboard" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group">
+            <Link to="/admin-dashboard" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group">
               <LayoutDashboard className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
               <span>Dashboard Overview</span>
             </Link>
@@ -103,7 +103,7 @@ const LeaveRequestApprovals: React.FC = () => {
               </button>
               {isEmpMenuOpen && (
                 <div className="pl-11 space-y-1">
-                  <Link to="/employees" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">All Employees</Link>
+                  <Link to="/all-employees" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">All Employees</Link>
                 </div>
               )}
             </div>
@@ -114,22 +114,22 @@ const LeaveRequestApprovals: React.FC = () => {
                 onClick={() => setIsAttendanceMenuOpen(!isAttendanceMenuOpen)}
                 className="w-full flex items-center justify-between space-x-3 px-3 py-2.5 rounded-lg bg-indigo-50 text-indigo-600 font-medium group"
               >
-                 <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3">
                   <ClipboardCheck className="w-5 h-5" />
                   <span>Attendance & Leave</span>
                 </div>
-                 <ChevronDown className={`w-4 h-4 transition-transform ${isAttendanceMenuOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform ${isAttendanceMenuOpen ? 'rotate-180' : ''}`} />
               </button>
               {isAttendanceMenuOpen && (
                 <div className="pl-11 space-y-1">
-                   <Link to="/approve-entries" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Approve Entries</Link>
-                   {/* Active Link */}
-                   <Link to="/leave-requests" className="block text-sm text-indigo-600 font-medium py-1.5">Leave Requests</Link>
+                  <Link to="/approve-entries" className="block text-sm text-gray-500 hover:text-gray-700 py-1.5">Approve Entries</Link>
+                  {/* Active Link */}
+                  <Link to="/leave-requests" className="block text-sm text-indigo-600 font-medium py-1.5">Leave Requests</Link>
                 </div>
               )}
             </div>
 
-            <Link to="/reports" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
+            <Link to="/reportsandanalytics" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 font-medium group mt-2">
               <BarChart2 className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
               <span>Reports & Analytics</span>
             </Link>
@@ -140,19 +140,21 @@ const LeaveRequestApprovals: React.FC = () => {
             </Link>
           </div>
         </nav>
-
+        {/* User Profile */}
         <div className="p-4 border-t border-gray-200">
-          <div className="flex items-center space-x-3 mb-3">
-            <img
-              src="https://i.pravatar.cc/150?u=admin_john"
-              alt="Admin Avatar"
-              className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-            />
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-900">John Admin</p>
-              <p className="text-xs text-gray-500">Administrator</p>
+          <Link to="/admin-profile">
+            <div className="flex items-center space-x-3 mb-3">
+              <img
+                src="https://i.pravatar.cc/150?u=admin_john" // Placeholder image
+                alt="Admin Avatar"
+                className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+              />
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-gray-900">John Admin</p>
+                <p className="text-xs text-gray-500">Administrator</p>
+              </div>
             </div>
-          </div>
+          </Link>
           <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 text-sm font-medium w-full px-2 py-1 rounded hover:bg-gray-100 transition-colors">
             <LogOut className="w-4 h-4" />
             <span>Logout</span>
@@ -200,11 +202,10 @@ const LeaveRequestApprovals: React.FC = () => {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                      activeTab === tab
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === tab
                         ? 'bg-white text-gray-900 shadow-sm'
                         : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200'
-                    }`}
+                      }`}
                   >
                     {tab}
                   </button>
@@ -265,12 +266,12 @@ const LeaveRequestApprovals: React.FC = () => {
                   </tbody>
                 </table>
               </div>
-              
+
               {/* View All History Button */}
               <button className="w-full mt-8 py-3 bg-indigo-50 text-indigo-600 font-medium rounded-xl hover:bg-indigo-100 transition-colors">
                 View All History
               </button>
-              
+
             </div>
           </div>
         </div>
